@@ -1,186 +1,800 @@
-/* ===== Reset ===== */
-* { box-sizing: border-box; }
-html:focus-within { scroll-behavior: smooth; }
-body, h1, h2, h3, p, ul { margin: 0; }
-ul { padding-left: 1.25rem; }
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pranav Grandhe | Portfolio</title>
 
-/* ===== Theme Tokens ===== */
-:root{
-  --bg:#ffffff;
-  --bg-elev:#f7f7f9;
-  --text:#1b1f24;
-  --muted:#555;
-  --link:#2563eb;
-  --card:#ffffff;
-  --border:#e5e7eb;
-  --shadow:0 8px 24px rgba(0,0,0,.08);
-  --accent:#0ea5e9;
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0ea5e9",
+              card: { light: "#ffffff", dark: "#101620" },
+              border: { light: "#e5e7eb", dark: "#1f2937" },
+            },
+            boxShadow: {
+              soft: "0 8px 24px rgba(0,0,0,.08)",
+              softdark: "0 8px 24px rgba(0,0,0,.35)",
+            },
+            keyframes: {
+              inup: {
+                "0%": { opacity: 0, transform: "translateY(16px) scale(.98)" },
+                "100%": { opacity: 1, transform: "translateY(0) scale(1)" },
+              },
+            },
+            animation: {
+              inup: "inup .6s ease forwards",
+            },
+          },
+        },
+      };
+    </script>
 
-  --radius:16px;
-  --radius-lg:20px;
-  --maxw:1100px;
-  --transition:220ms ease;
-}
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
 
-/* Auto-dark if user hasn't chosen manually */
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0b1016;
-    --bg-elev:#0f1520;
-    --text:#e6eaf0;
-    --muted:#b6c2d1;
-    --link:#8ab4ff;
-    --card:#101620;
-    --border:#1f2937;
-    --shadow:0 8px 24px rgba(0,0,0,.35);
-    --accent:#38bdf8;
-  }
-}
+    <style>
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .caret {
+        display: inline-block;
+        margin-left: 2px;
+        width: 1ch;
+        animation: blink 1s step-end infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .caret {
+          animation: none;
+        }
+      }
+    </style>
 
-/* Manual dark via .dark on <body> */
-body.dark{
-  --bg:#0b1016 !important;
-  --bg-elev:#0f1520 !important;
-  --text:#e6eaf0 !important;
-  --muted:#b6c2d1 !important;
-  --link:#8ab4ff !important;
-  --card:#101620 !important;
-  --border:#1f2937 !important;
-  --shadow:0 8px 24px rgba(0,0,0,.35) !important;
-  --accent:#38bdf8 !important;
-}
+    <meta name="color-scheme" content="light dark" />
+  </head>
+  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <!-- Scroll progress bar -->
+    <div
+      id="scrollProgress"
+      class="fixed top-0 left-0 h-1 bg-primary/80 z-[60] w-0"
+    ></div>
 
-/* ===== Base ===== */
-body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
-  background: radial-gradient(1200px 800px at 10% -10%, var(--bg-elev), transparent 60%), var(--bg);
-  color:var(--text);
-  line-height:1.6;
-  padding-bottom:6rem;
-  transition: background var(--transition), color var(--transition);
-}
-a{ color:var(--link); text-decoration:none; }
-a:hover{ text-decoration:underline; }
+    <!-- Nav -->
+    <nav
+      class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-slate-900/70 backdrop-blur-sm shadow-md z-50"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between"
+      >
+        <a href="#about" class="font-semibold tracking-wide hover:opacity-90"
+          >Pranav Grandhe</a
+        >
+        <div
+          class="hidden sm:flex items-center gap-6 text-sm"
+          id="desktopLinks"
+        >
+          <a href="#about" class="navlink">About</a>
+          <a href="#skills" class="navlink">Skills</a>
+          <a href="#experience" class="navlink">Experience</a>
+          <a href="#projects" class="navlink">Projects</a>
+          <a href="#contact" class="navlink">Contact</a>
+          <a
+            href="resume.pdf"
+            target="_blank"
+            class="navlink font-semibold text-primary"
+            >Résumé</a
+          >
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="themeToggle"
+            class="relative inline-flex w-14 h-8 items-center rounded-full border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark"
+          >
+            <span
+              id="themeKnob"
+              class="absolute left-1 top-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 transition-all"
+              ><span id="themeIcon">🌙</span></span
+            >
+          </button>
+          <button
+            id="menuBtn"
+            class="sm:hidden ml-1 inline-flex items-center justify-center w-10 h-10 rounded-full border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark"
+          >
+            <svg
+              id="menuIcon"
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        id="mobileMenu"
+        class="sm:hidden origin-top scale-y-0 opacity-0 pointer-events-none transition-transform"
+      >
+        <div class="px-4 py-2 grid gap-2 text-sm">
+          <a href="#about" class="mobilelink">About</a>
+          <a href="#skills" class="mobilelink">Skills</a>
+          <a href="#experience" class="mobilelink">Experience</a>
+          <a href="#projects" class="mobilelink">Projects</a>
+          <a href="#contact" class="mobilelink">Contact</a>
+          <a
+            href="resume.pdf"
+            target="_blank"
+            class="mobilelink font-semibold text-primary"
+            >Résumé</a
+          >
+        </div>
+      </div>
+    </nav>
 
-main,.site-header,.site-footer{
-  max-width:var(--maxw);
-  margin:0 auto;
-  padding:1rem 1.25rem;
-}
+    <main class="pt-20">
+      <!-- About (with particles) -->
+      <section
+        id="about"
+        class="min-h-screen relative flex items-center justify-center"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-slate-900 dark:to-slate-950"
+        ></div>
+        <div id="tsparticles" class="absolute inset-0 -z-0"></div>
+        <div class="relative z-10 max-w-6xl mx-auto px-4 py-10">
+          <div
+            class="mx-auto max-w-3xl rounded-2xl border border-border-light dark:border-border-dark bg-card-light/80 dark:bg-card-dark/60 backdrop-blur-md shadow-soft dark:shadow-softdark p-6 sm:p-8 reveal"
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="Profile.JPG"
+                alt="Pranav Grandhe"
+                class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-2 ring-border-light dark:ring-border-dark shadow-soft dark:shadow-softdark"
+              />
+              <div>
+                <h1 class="text-2xl sm:text-3xl font-semibold">
+                  Pranav Grandhe
+                </h1>
+                <p
+                  class="text-slate-600 dark:text-slate-300 mt-0.5"
+                  role="status"
+                  aria-live="polite"
+                >
+                  <span id="roleText" class="font-medium"></span
+                  ><span class="caret">|</span>
+                </p>
+                <div class="flex gap-3 mt-2 text-sm">
+                  <a
+                    href="mailto:pranavgrandhe@gmail.com"
+                    class="px-3 py-1.5 rounded-full border border-border-light dark:border-border-dark bg-white/80 dark:bg-slate-900/60 hover:opacity-90"
+                    >Email</a
+                  >
+                  <a
+                    href="https://www.linkedin.com/in/pranav-grandhe-219b37231"
+                    target="_blank"
+                    class="px-3 py-1.5 rounded-full border border-border-light dark:border-border-dark bg-white/80 dark:bg-slate-900/60 hover:opacity-90"
+                    >LinkedIn</a
+                  >
+                  <a
+                    href="https://github.com/pranavgrandhe"
+                    target="_blank"
+                    class="px-3 py-1.5 rounded-full border border-border-light dark:border-border-dark bg-white/80 dark:bg-slate-900/60 hover:opacity-90"
+                    >GitHub</a
+                  >
+                </div>
+              </div>
+            </div>
+            <p class="leading-relaxed">
+              I am a Master's student at SUNY Buffalo, passionate about building
+              scalable systems and solving real-world problems with machine
+              learning and software engineering principles.
+            </p>
+            <ul class="mt-6 space-y-4">
+              <li class="flex items-center gap-3">
+                <img src=\"ub.jpg\"$1class=\"$2 transition-transform
+                hover:scale-105\"/>
+                <div>
+                  <strong>MASTER'S in Computer Science</strong> (GPA: 3.33) –
+                  State University of New York at Buffalo
+                </div>
+              </li>
+              <li class="flex items-center gap-3">
+                <img src=\"rmk.jpg\"$1class=\"$2 transition-transform
+                hover:scale-105\"/>
+                <div>
+                  <strong
+                    >Bachelor's in Computer Science and Engineering</strong
+                  >
+                  (CGPA: 8.1) – R.M.K. Engineering College
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-/* ===== Header ===== */
-.site-header{
-  position:sticky; top:0; z-index:20;
-  display:grid; grid-template-columns:88px 1fr auto; gap:1rem; align-items:center;
-  background: color-mix(in oklab, var(--bg), transparent 10%);
-  backdrop-filter: blur(8px);
-  border-bottom:1px solid var(--border);
-}
+      <!-- Skills -->
+      <section id="skills" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-2xl sm:text-3xl font-semibold mb-6">Skills</h2>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
+              <h3 class="font-semibold mb-2">🧠 Programming Languages</h3>
+              <p>
+                Java, Python, SQL, R, C, C++, JavaScript, HTML, CSS, Bash/Shell
+              </p>
+            </div>
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
+              <h3 class="font-semibold mb-2">📚 Libraries & Frameworks</h3>
+              <p>
+                Pandas, NumPy, Matplotlib, Seaborn, PyTorch, TensorFlow,
+                Scikit-learn, Deep Learning, ML, NLP, RAG, LangGraph, OpenCV
+              </p>
+            </div>
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
+              <h3 class="font-semibold mb-2">🌐 Web & Backend</h3>
+              <p>
+                Flask, Django, FastAPI, Streamlit, Node.js, Express.js, ASP.NET,
+                Spring Boot, Next.js, React.js, Angular.js, Redux, REST APIs,
+                Bootstrap
+              </p>
+            </div>
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
+              <h3 class="font-semibold mb-2">☁️ Cloud & Data Eng</h3>
+              <p>
+                AWS, Azure, Snowflake, Databricks, dbt, Parquet, Delta Lake,
+                Spark, Hadoop, Airflow, Kafka, S3, HDFS, Hive, Data Lake, ETL
+              </p>
+            </div>
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
+              <h3 class="font-semibold mb-2">🗃️ Databases</h3>
+              <p>MySQL, PostgreSQL, MongoDB</p>
+            </div>
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
+              <h3 class="font-semibold mb-2">📊 BI & Analytics</h3>
+              <p>
+                Power BI, Tableau, Excel, Statistical Analysis, Time Series,
+                Regression, Predictive Analysis
+              </p>
+            </div>
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 sm:col-span-2 lg:col-span-3 reveal"
+            >
+              <h3 class="font-semibold mb-2">🛠️ Tools & DevOps</h3>
+              <p>Git, GitLab, Jenkins, Docker, Jira</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-.profile-pic{
-  width:88px; height:88px; border-radius:50%; object-fit:cover;
-  box-shadow:var(--shadow); border:2px solid var(--border);
-}
+      <!-- Experience -->
+      <section id="experience" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-2xl sm:text-3xl font-semibold mb-6">
+            Professional Experience
+          </h2>
+          <div
+            class="rounded-2xl border-l-4 border-primary border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-6 reveal"
+          >
+            <div class="flex flex-wrap items-baseline gap-3">
+              <h3 class="text-xl font-semibold">
+                Target Agility – Data Engineer
+              </h3>
+              <span class="text-sm text-slate-600 dark:text-slate-300"
+                >Jan 2022 – Dec 2023</span
+              >
+            </div>
+            <ul class="list-disc pl-5 space-y-2 mt-3">
+              <li>
+                🛠️ Tackled reporting bottlenecks caused by poorly structured
+                schemas and inefficient SQL queries
+              </li>
+              <li>
+                📐 Redesigned database layer using 3NF/BCNF normalization,
+                indexing, and partitioning
+              </li>
+              <li>
+                ⚡ Optimized stored procedures, reducing SQL execution time by
+                45%
+              </li>
+              <li>
+                🔗 Partnered with React and Spring Boot teams to expose
+                SQL-driven APIs
+              </li>
+              <li>
+                📊 Improved dashboard reporting latency by 70% and delivered
+                high-availability SQL solutions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-.header-text h1{ font-size:1.75rem; }
-.header-text p{ color:var(--muted); margin:.25rem 0 .5rem; }
+      <!-- Projects -->
+      <section id="projects" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <h2 class="text-2xl sm:text-3xl font-semibold">Projects</h2>
+            <label class="relative">
+              <input
+                id="projectFilter"
+                type="search"
+                placeholder="Search projects (e.g., 'Spark', 'Airflow', 'CNN')"
+                class="w-72 max-w-[60vw] px-3 py-2 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 outline-none"
+              />
+              <span
+                id="filterCount"
+                class="absolute -right-2 -top-2 text-xs px-1.5 py-0.5 rounded bg-primary text-white"
+                >0</span
+              >
+            </label>
+          </div>
 
-.social-links{ display:flex; gap:.75rem; flex-wrap:wrap; }
-.social-links a{
-  padding:.35rem .7rem; border:1px solid var(--border);
-  border-radius:999px; background:var(--card); box-shadow:var(--shadow);
-  transition: transform var(--transition), background var(--transition);
-}
-.social-links a:hover{ transform: translateY(-2px); }
+          <div id="projectGrid" class="grid md:grid-cols-2 gap-6">
+            <!-- Brain Tumor -->
+            <article
+              class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-\[1\.02\] hover:ring-1 hover:ring-primary/40 reveal"
+              data-tags="pytorch cnn transformer medical grad-cam"
+            >
+              <img
+                src="brain tumer.jpg"
+                alt="Brain Tumor Detection"
+                class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 group-hover:opacity-95"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="text-lg font-semibold">
+                  Brain Tumor Detection using Hybrid CNN-Transformer Models
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Hybrid deep learning for MRI classification. ResNet50 &
+                  EfficientNet-B0 with Transformer encoders and SE blocks.
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                  <li>📊 Accuracy: 99.47% (ResNet-Hybrid)</li>
+                  <li>🧠 Tools: PyTorch, CNNs, Transformers, Grad-CAM</li>
+                  <li>🖼️ Frontend: Gradio app for uploading scans</li>
+                  <li>
+                    📁
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/Brain-tumer-Detection-"
+                      >GitHub Repo</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
 
-/* Theme toggle */
-.theme-toggle{
-  appearance:none; border:1px solid var(--border);
-  background:var(--card); color:var(--text);
-  border-radius:999px; width:44px; height:44px;
-  display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow);
-  transition: transform var(--transition), background var(--transition);
-}
-.theme-toggle:hover{ transform: translateY(-2px); }
-.theme-toggle:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; }
-.toggle-icon{ font-size:1.1rem; }
+            <!-- NYC -->
+            <article
+              class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-\[1\.02\] hover:ring-1 hover:ring-primary/40 reveal"
+              data-tags="python sqlite etl pandas matplotlib"
+            >
+              <img
+                src="NYC Food.jpg"
+                alt="NYC Food Inspection Analysis"
+                class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 group-hover:opacity-95"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="text-lg font-semibold">
+                  NYC Restaurant Inspection Analysis (Python + SQLite)
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  End-to-end analytics on 200K+ inspection records. ETL,
+                  star-schema warehouse, borough/cuisine trends.
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                  <li>🔄 ETL with Pandas/NumPy</li>
+                  <li>🧱 Star schema: 1 fact, 5+ dimensions</li>
+                  <li>📊 Matplotlib trends by borough/cuisine</li>
+                  <li>🧰 Tools: Python, SQLite, Matplotlib</li>
+                  <li>
+                    📁
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/nyc-food-inspection-analysis"
+                      >GitHub Repo</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
 
-/* ===== Sections ===== */
-section{ margin:2.5rem 0; }
-section h2{ font-size:1.6rem; margin-bottom:.75rem; }
+            <!-- Credit Risk -->
+            <article
+              class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-\[1\.02\] hover:ring-1 hover:ring-primary/40 reveal"
+              data-tags="flask sklearn classification finance"
+            >
+              <img
+                src="credit card risk.jpg"
+                alt="Credit Risk App"
+                class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 group-hover:opacity-95"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="text-lg font-semibold">
+                  Credit Risk Prediction Web Application
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Full-stack credit score classification using Random Forest +
+                  Flask.
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                  <li>🧠 Accuracy: 77.5%</li>
+                  <li>🛠️ Stack: Python, Flask, HTML/CSS, Pandas, Sklearn</li>
+                  <li>
+                    🔍 17 financial features; classes: Poor, Standard, Good
+                  </li>
+                  <li>
+                    📁
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/Credit-Risk-Prediction-App"
+                      >GitHub Repo</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
 
-/* Education */
-.edu-list{ list-style:none; padding-left:0; display:grid; gap:.6rem; }
-.edu-item{ display:flex; align-items:center; gap:.6rem; }
-.edu-logo{ width:50px; height:44px; border-width:2px; }
-@media (max-width:480px){ .edu-logo{ width:40px; height:40px; } }
+            <!-- Twitter Pipeline -->
+            <article
+              class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-\[1\.02\] hover:ring-1 hover:ring-primary/40 reveal"
+              data-tags="airflow docker aws s3 streaming"
+            >
+              <img
+                src="twitter data.jpg"
+                alt="Twitter Data Pipeline"
+                class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 group-hover:opacity-95"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="text-lg font-semibold">
+                  Twitter Data Pipeline using Apache Airflow
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Real-time ingestion & processing with Airflow, Docker, AWS.
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                  <li>🔄 Airflow DAGs for ingestion & processing</li>
+                  <li>🐳 AWS EC2 + Docker, S3 storage</li>
+                  <li>⚡ +35% efficiency, 30% faster deploys</li>
+                  <li>
+                    📁
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/-airline-tweet-sentiment-analysis"
+                      >GitHub Repo</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
 
-/* ===== Experience Section ===== */
-#experience { margin: 3rem 0; }
-.exp-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.5rem;
-  transition: background var(--transition), border var(--transition);
-}
-.exp-card h3 { margin-bottom: 0.25rem; font-size: 1.25rem; }
-.exp-card .exp-duration { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.75rem; }
-.exp-card ul { padding-left: 1.2rem; display: grid; gap: 0.4rem; }
-.exp-card li { list-style: disc; color: var(--text); }
+            <!-- Movie Review -->
+            <article
+              class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-\[1\.02\] hover:ring-1 hover:ring-primary/40 reveal"
+              data-tags="spring boot mongo react java"
+            >
+              <img
+                src="movie review.jpg"
+                alt="Movie Review App"
+                class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 group-hover:opacity-95"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="text-lg font-semibold">
+                  Full-Stack Movie Review Web Application
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Scalable CRUD with Java, Spring Boot, MongoDB Atlas, React.
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                  <li>📊 10K+ movie & review records</li>
+                  <li>⚡ Optimized REST APIs (−40% latency)</li>
+                  <li>
+                    🚀 Onboarding with <code>.env</code>, Maven, containerized
+                    MongoDB
+                  </li>
+                  <li>
+                    📁
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/YOUR_GITHUB_REPO_LINK"
+                      >GitHub Repo</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
 
-/* ===== Project Cards ===== */
-.card{
-  display:grid; grid-template-columns:260px 1fr; gap:1rem;
-  background:var(--card); border:1px solid var(--border);
-  border-radius:var(--radius-lg); box-shadow:var(--shadow);
-  overflow:clip; margin:1.25rem 0;
-}
-.card img{ width:100%; height:100%; object-fit:cover; border-right:1px solid var(--border); }
-.card-body{ padding:1rem 1rem 1.1rem; }
-.card h3{ margin-bottom:.35rem; line-height:1.35; }
-.card p{ color:var(--muted); margin-bottom:.5rem; }
-.card ul{ margin-top:.25rem; display:grid; gap:.35rem; }
+            <!-- Pintos -->
+            <article
+              class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-\[1\.02\] hover:ring-1 hover:ring-primary/40 reveal"
+              data-tags="os c qemu threads synchronization"
+            >
+              <img
+                src="os.jpg"
+                alt="Pintos Threads"
+                class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 group-hover:opacity-95"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="text-lg font-semibold">
+                  Operating System Development – P1 Threads (Team)
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Simplified OS kernel in Pintos: threading, scheduling, sync
+                  primitives.
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                  <li>🧵 Priority scheduling, context switching</li>
+                  <li>🔁 Semaphores, locks, condition variables</li>
+                  <li>🛠️ C, x86, QEMU, GDB, Make</li>
+                  <li>
+                    📁
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/CSE521-Project/P1-Threads"
+                      >GitHub Repo</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
 
-/* Section header + filter */
-.section-header{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:.75rem; }
-.filter input[type="search"]{
-  width:min(360px, 60vw); padding:.6rem .8rem;
-  border:1px solid var(--border); border-radius:10px; background:var(--card); color:var(--text);
-  box-shadow:var(--shadow);
-}
+      <!-- Contact -->
+      <section id="contact" class="py-16">
+        <div class="max-w-6xl mx-auto px-4">
+          <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Contact</h2>
+          <p>
+            Email:
+            <a class="underline" href="mailto:pranavgrandhe@gmail.com"
+              >pranavgrandhe@gmail.com</a
+            >
+            <button
+              id="copyEmail"
+              class="ml-2 text-xs px-2 py-1 rounded border border-border-light dark:border-border-dark hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              Copy
+            </button>
+          </p>
+          <p class="mt-2">Phone: +1 (804) 388-5161</p>
+        </div>
+      </section>
 
-/* ===== Reveal on scroll ===== */
-.reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-.reveal.revealed{ opacity:1; transform:none; }
+      <!-- Scroll-to-top button -->
+      <button
+        id="scrollTop"
+        class="fixed bottom-6 right-6 w-10 h-10 rounded-full bg-primary text-white shadow-lg hidden"
+        aria-label="Scroll to top"
+      >
+        ↑
+      </button>
+    </main>
 
-/* ===== Scroll to top ===== */
-.scroll-top{
-  position:fixed; right:1rem; bottom:1rem; width:44px; height:44px;
-  border-radius:999px; border:1px solid var(--border); background:var(--card); color:var(--text);
-  box-shadow:var(--shadow); display:grid; place-items:center;
-  opacity:0; pointer-events:none; transform: translateY(10px);
-  transition: opacity var(--transition), transform var(--transition);
-}
-.scroll-top.show{ opacity:1; pointer-events:auto; transform: translateY(0); }
-.scroll-top:hover{ transform: translateY(-2px); }
+    <footer class="py-6 text-center text-slate-600 dark:text-slate-300">
+      © 2025 Pranav Grandhe. All rights reserved.
+    </footer>
 
-/* ===== Footer ===== */
-.site-footer{ text-align:center; color:var(--muted); border-top:1px solid var(--border); }
+    <script>
+      // Dark mode toggle
+      const htmlEl = document.documentElement;
+      const themeBtn = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const themeKnob = document.getElementById("themeKnob");
+      const THEME_KEY = "pg-theme";
+      function applyTheme(mode) {
+        const dark = mode === "dark";
+        htmlEl.classList.toggle("dark", dark);
+        themeIcon.textContent = dark ? "☀️" : "🌙";
+        themeKnob.style.transform = dark ? "translateX(24px)" : "translateX(0)";
+      }
+      applyTheme(
+        localStorage.getItem(THEME_KEY) ||
+          (matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light")
+      );
+      themeBtn.addEventListener("click", () => {
+        const cur = htmlEl.classList.contains("dark") ? "dark" : "light";
+        const next = cur === "dark" ? "light" : "dark";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      });
 
-/* ===== Responsive ===== */
-@media (max-width:900px){
-  .card{ grid-template-columns:1fr; }
-  .card img{ height:180px; border-right:none; border-bottom:1px solid var(--border); }
-  .site-header{ grid-template-columns:64px 1fr auto; }
-  .profile-pic{ width:64px; height:64px; }
-}
+      // Scroll progress + scroll-to-top
+      const progress = document.getElementById("scrollProgress");
+      const scrollTop = document.getElementById("scrollTop");
+      window.addEventListener("scroll", () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        progress.style.width = (window.scrollY / max) * 100 + "%";
+        if (window.scrollY > 300) {
+          scrollTop.classList.remove("hidden");
+        } else {
+          scrollTop.classList.add("hidden");
+        }
+      });
+      scrollTop.addEventListener("click", () =>
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
 
-/* Reduce motion preference */
-@media (prefers-reduced-motion: reduce){
-  .reveal{ transition:none; transform:none; opacity:1; }
-  .theme-toggle, .social-links a, .scroll-top{ transition:none; }
-}
+      // Mobile menu
+      const menuBtn = document.getElementById("menuBtn");
+      const mobileMenu = document.getElementById("mobileMenu");
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("scale-y-100");
+        mobileMenu.classList.toggle("opacity-100");
+        mobileMenu.classList.toggle("pointer-events-auto");
+      });
+
+      // Reveal on scroll
+      const obs = new IntersectionObserver(
+        (es) => {
+          es.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("animate-inup");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
+
+      // Copy email
+      document
+        .getElementById("copyEmail")
+        ?.addEventListener("click", async (e) => {
+          const btn = e.currentTarget;
+          btn.disabled = true;
+          try {
+            await navigator.clipboard.writeText("pranavgrandhe@gmail.com");
+            btn.textContent = "Copied!";
+          } catch {
+            btn.textContent = "Failed";
+          } finally {
+            setTimeout(() => {
+              btn.textContent = "Copy";
+              btn.disabled = false;
+            }, 1400);
+          }
+        });
+
+      // Project filter + count
+      const filterInput = document.getElementById("projectFilter");
+      const countBadge = document.getElementById("filterCount");
+      const cards = [...document.querySelectorAll("#projectGrid .project")];
+      function applyFilter(q) {
+        const query = (q || "").toLowerCase();
+        let shown = 0;
+        cards.forEach((card, i) => {
+          const text = card.textContent.toLowerCase();
+          const tags = (card.getAttribute("data-tags") || "").toLowerCase();
+          const ok = !query || text.includes(query) || tags.includes(query);
+          card.style.display = ok ? "" : "none";
+          if (ok) {
+            shown++;
+          }
+        });
+        countBadge.textContent = String(shown);
+      }
+      filterInput?.addEventListener("input", (e) =>
+        applyFilter(e.target.value)
+      );
+      applyFilter("");
+
+      // Particles background
+      (async () => {
+        try {
+          await tsParticles.load("tsparticles", {
+            background: { color: "transparent" },
+            fpsLimit: 60,
+            particles: {
+              number: { value: 60, density: { enable: true, area: 800 } },
+              color: { value: ["#60a5fa", "#a78bfa", "#34d399"] },
+              shape: { type: "circle" },
+              opacity: { value: 0.5 },
+              size: { value: { min: 1, max: 3 } },
+              move: { enable: true, speed: 0.6, outModes: { default: "out" } },
+              links: {
+                enable: true,
+                opacity: 0.2,
+                distance: 120,
+                color: "#94a3b8",
+              },
+            },
+            interactivity: {
+              events: {
+                onHover: { enable: true, mode: "repulse" },
+                resize: true,
+              },
+              modes: { repulse: { distance: 100, duration: 0.3 } },
+            },
+            detectRetina: true,
+          });
+        } catch (_) {}
+      })();
+
+      // Typewriter rotating roles
+      (function () {
+        const roles = [
+          "Software Engineer",
+          "Full-Stack Developer",
+          "Data Engineer",
+          "Data Analyst",
+        ];
+        const el = document.getElementById("roleText");
+        if (!el) return;
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) {
+          el.textContent = roles.join(" • ");
+          return;
+        }
+        let i = 0,
+          j = 0,
+          typing = true;
+        function loop() {
+          const t = roles[i];
+          if (typing) {
+            j++;
+            el.textContent = t.slice(0, j);
+            if (j === t.length) {
+              typing = false;
+              setTimeout(loop, 1200);
+              return;
+            }
+            setTimeout(loop, 80);
+          } else {
+            j--;
+            el.textContent = t.slice(0, j);
+            if (j === 0) {
+              typing = true;
+              i = (i + 1) % roles.length;
+              setTimeout(loop, 300);
+              return;
+            }
+            setTimeout(loop, 40);
+          }
+        }
+        loop();
+      })();
+    </script>
+  </body>
+</html>
