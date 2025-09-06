@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pranav Grandhe | Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <img src="Profile.JPG" alt="Pranav Grandhe" class="profile-pic" />
+      <div class="header-text">
+        <h1>Pranav Grandhe</h1>
+        <p>Aspiring Software Engineer | Deep Learning Enthusiast</p>
+        <div class="social-links">
+          <a href="mailto:pranavgrandhe@gmail.com">Email</a>
+          <a
+            href="https://www.linkedin.com/in/pranav-grandhe-219b37231"
+            target="_blank"
+            >LinkedIn</a
+          >
+          <a href="https://github.com/pranavgrandhe" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <!-- Theme toggle -->
+      <button
+        id="theme-toggle"
+        class="theme-toggle"
+        aria-label="Toggle dark mode"
+        title="Toggle dark mode"
+      >
+        <span class="toggle-icon" aria-hidden="true">🌙</span>
+      </button>
+    </header>
+
+    <main>
+      <!-- About -->
+      <section id="about" class="reveal">
+        <h2>About Me</h2>
+        <p>
+          I am a Master's student at SUNY Buffalo, passionate about building
+          scalable systems and solving real-world problems with machine learning
+          and software engineering principles.
+        </p>
+        <ul class="edu-list">
+          <li class="edu-item">
+            <img
+              src="ub.jpg"
+              alt="University at Buffalo"
+              class="profile-pic edu-logo"
+            />
+            <div>
+              <strong>MASTER'S in Computer Science</strong> (GPA: 3.33) – State
+              University of New York at Buffalo
+            </div>
+          </li>
+          <li class="edu-item">
+            <img
+              src="rmk.jpg"
+              alt="R.M.K. Engineering College"
+              class="profile-pic edu-logo"
+            />
+            <div>
+              <strong>Bachelor's in Computer Science and Engineering</strong>
+              (CGPA: 8.1) – R.M.K. Engineering College
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="reveal">
+        <h2>Skills</h2>
+
+        <h3>🧠 Programming Languages</h3>
+        <ul>
+          <li>
+            Java, Python, SQL, R, C, C++, JavaScript, HTML, CSS, Bash/Shell
+          </li>
+        </ul>
+
+        <h3>📚 Libraries & Frameworks</h3>
+        <ul>
+          <li>
+            Pandas, NumPy, Matplotlib, Seaborn, PyTorch, TensorFlow,
+            Scikit-learn
+          </li>
+          <li>Deep Learning, Machine Learning, NLP, RAG, LangGraph, OpenCV</li>
+        </ul>
+
+        <h3>🌐 Web & Backend Development</h3>
+        <ul>
+          <li>
+            Flask, Django, FastAPI, Streamlit, Node.js, Express.js, ASP.NET,
+            Spring Boot
+          </li>
+          <li>Next.js, React.js, Angular.js, Redux, REST APIs, Bootstrap</li>
+        </ul>
+
+        <h3>☁️ Cloud & Data Engineering</h3>
+        <ul>
+          <li>
+            AWS, Microsoft Azure, Snowflake, Databricks, dbt, Parquet, Delta
+            Lake
+          </li>
+          <li>Apache Spark, Hadoop, Apache Airflow, Apache Kafka</li>
+          <li>
+            Amazon S3, HDFS, Apache Hive, Data Lake Architecture, ETL Pipelines
+          </li>
+        </ul>
+
+        <h3>🗃️ Databases</h3>
+        <ul>
+          <li>MySQL, PostgreSQL, MongoDB</li>
+        </ul>
+
+        <h3>📊 Data Visualization & BI</h3>
+        <ul>
+          <li>Power BI, Tableau, Microsoft Excel</li>
+        </ul>
+
+        <h3>📈 Analytics & Modeling</h3>
+        <ul>
+          <li>
+            Statistical Analysis, Time Series, Regression, Predictive Analysis
+          </li>
+        </ul>
+
+        <h3>🛠️ Tools & DevOps</h3>
+        <ul>
+          <li>Git, GitLab, Jenkins, Docker, Jira</li>
+        </ul>
+      </section>
+
+      <!-- Projects -->
+      <section id="projects" class="reveal">
+        <div class="section-header">
+          <h2>Projects</h2>
+          <label class="filter">
+            <input
+              type="search"
+              id="project-filter"
+              placeholder="Search projects (e.g., 'Spark', 'Airflow', 'CNN')"
+            />
+          </label>
+        </div>
+
+        <!-- Example project -->
+        <div
+          class="project card"
+          data-tags="pytorch cnn transformer grad-cam healthcare classification"
+        >
+          <img src="brain-tumor.jpg" alt="Brain Tumor Detection" />
+          <div class="card-body">
+            <h3>Brain Tumor Detection using Hybrid CNN-Transformer Models</h3>
+            <p>
+              Developed a hybrid deep learning system for classifying brain MRI
+              scans into four categories. Combined ResNet50 and EfficientNet-B0
+              with Transformer encoders and SE blocks to improve accuracy and
+              interpretability.
+            </p>
+            <ul>
+              <li>📊 Accuracy: 99.47% (ResNet-Hybrid)</li>
+              <li>🧠 Tools: PyTorch, CNNs, Transformers, Grad-CAM</li>
+              <li>🖼️ Frontend: Gradio app for uploading scans</li>
+              <li>
+                📁
+                <a
+                  href="https://github.com/pranavgrandhe/Brain-tumer-Detection-"
+                  target="_blank"
+                  >GitHub Repo</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- NYC Inspection -->
+        <div
+          class="project card"
+          data-tags="pandas numpy sqlite etl star schema visualization nyc"
+        >
+          <img src="nyc-inspection.jpg" alt="NYC Food Inspection Analysis" />
+          <div class="card-body">
+            <h3>NYC Restaurant Inspection Analysis (Python + SQLite)</h3>
+            <p>
+              End-to-end analytics on 200K+ NYC health inspection records. Built
+              an ETL, modeled a star-schema warehouse, and visualized hygiene
+              trends.
+            </p>
+            <ul>
+              <li>🔄 ETL with Pandas/NumPy</li>
+              <li>🧱 Star schema: 1 fact, 5+ dimensions</li>
+              <li>📊 Matplotlib trends by borough/cuisine</li>
+              <li>🧰 Tools: Python, SQLite, Matplotlib</li>
+              <li>
+                📁
+                <a
+                  href="https://github.com/pranavgrandhe/nyc-food-inspection-analysis"
+                  target="_blank"
+                  >GitHub Repo</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Twitter Data Pipeline -->
+        <div
+          class="project card"
+          data-tags="airflow docker aws ec2 s3 kafka pipeline etl"
+        >
+          <img
+            src="twitter-pipeline.jpg"
+            alt="Twitter Data Pipeline with Airflow"
+          />
+          <div class="card-body">
+            <h3>Twitter Data Pipeline using Apache Airflow</h3>
+            <p>
+              Real-time pipeline for ingesting and processing tweets with
+              Airflow, Docker, and AWS. Automated ETL, boosted reliability and
+              deploy speed.
+            </p>
+            <ul>
+              <li>🔄 Airflow DAGs for ingestion & processing</li>
+              <li>🐳 Deployed on AWS EC2 with Docker</li>
+              <li>🗃️ Amazon S3 for durable storage</li>
+              <li>⚡ +35% processing efficiency, 30% faster deploys</li>
+              <li>
+                📁
+                <a
+                  href="https://github.com/pranavgrandhe/-airline-tweet-sentiment-analysis"
+                  target="_blank"
+                  >GitHub Repo</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Full-Stack Movie Review Web Application -->
+        <div
+          class="project card"
+          data-tags="java spring-boot react mongodb full-stack crud api"
+        >
+          <img src="movie-app.jpg" alt="Movie Review Web App" />
+          <div class="card-body">
+            <h3>Full-Stack Movie Review Web Application</h3>
+            <p>
+              Developed a full-stack web application for managing movie reviews,
+              solving scalability challenges and enabling reliable CRUD
+              operations.
+            </p>
+            <ul>
+              <li>🖥️ Tech: Java, Spring Boot, MongoDB Atlas, React.js</li>
+              <li>📊 Supported 10K+ movie and review records</li>
+              <li>
+                ⚡ Optimized REST APIs, reduced backend latency by
+                <strong>40%</strong>
+              </li>
+              <li>
+                🚀 Onboarding simplified with <code>.env</code>, Maven, and
+                containerized MongoDB Atlas
+              </li>
+              <li>⏱️ Cut developer setup time by <strong>50%</strong></li>
+              <li>
+                📁
+                <a
+                  href="https://github.com/YOUR_GITHUB_REPO_LINK"
+                  target="_blank"
+                >
+                  GitHub Repo
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Pintos OS -->
+        <div
+          class="project card"
+          data-tags="c os kernel threads synchronization qemu"
+        >
+          <img src="pintos-os.jpg" alt="Pintos Threads Project" />
+          <div class="card-body">
+            <h3>Operating System Development – P1 Threads (Team)</h3>
+            <p>
+              Built a simplified OS kernel in Pintos. Implemented threading,
+              scheduling, and synchronization primitives across multiple phases.
+            </p>
+            <ul>
+              <li>🧵 Priority scheduling, context switching</li>
+              <li>🔁 Semaphores, locks, condition variables</li>
+              <li>🛠️ C, x86, QEMU, GDB, Make</li>
+              <li>👥 Git reviews & milestones</li>
+              <li>
+                📁
+                <a
+                  href="https://github.com/CSE521-Project/P1-Threads"
+                  target="_blank"
+                  >GitHub Repo</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Add your other projects (NYC Inspection, Twitter Pipeline, Pintos OS, etc.) here in the same card structure -->
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="reveal">
+        <h2>Contact</h2>
+        <p>
+          Email:
+          <a href="mailto:pranavgrandhe@gmail.com">pranavgrandhe@gmail.com</a>
+        </p>
+        <p>Phone: +1 (804) 388-5161</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; 2025 Pranav Grandhe. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll to top -->
+    <button
+      id="scroll-top"
+      class="scroll-top"
+      aria-label="Scroll to top"
+      title="Back to top"
+    >
+      ↑
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
