@@ -1,405 +1,689 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Pranav Grandhe | Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <!-- Tailwind via CDN (no build needed) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind config: enable class-based dark mode
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0ea5e9",
+              card: { light: "#ffffff", dark: "#101620" },
+              border: { light: "#e5e7eb", dark: "#1f2937" },
+            },
+            boxShadow: {
+              soft: "0 8px 24px rgba(0,0,0,.08)",
+              softdark: "0 8px 24px rgba(0,0,0,.35)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- tsParticles -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+
+    <!-- Tiny CSS for the typewriter caret -->
+    <style>
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .caret {
+        display: inline-block;
+        margin-left: 2px;
+        width: 1ch;
+        animation: blink 1s step-end infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .caret {
+          animation: none;
+        }
+      }
+    </style>
+
+    <!-- Meta/theme -->
+    <meta name="color-scheme" content="light dark" />
   </head>
-  <body>
-    <header class="site-header">
-      <img src="Profile.JPG" alt="Pranav Grandhe" class="profile-pic" />
-      <div class="header-text">
-        <h1>Pranav Grandhe</h1>
-        <p>Aspiring Software Engineer | Deep Learning Enthusiast</p>
-        <div class="social-links">
-          <a href="mailto:pranavgrandhe@gmail.com">Email</a>
-          <a
-            href="https://www.linkedin.com/in/pranav-grandhe-219b37231"
-            target="_blank"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/pranavgrandhe" target="_blank">GitHub</a>
-        </div>
-      </div>
-
-      <!-- Theme toggle -->
-      <button
-        id="theme-toggle"
-        class="theme-toggle"
-        aria-label="Toggle dark mode"
-        title="Toggle dark mode"
+  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <!-- Top gradient section -->
+    <div
+      class="min-h-screen bg-gradient-to-b from-blue-100 via-purple-100 to-blue-100 dark:from-slate-900 dark:via-slate-900 dark:to-slate-950"
+    >
+      <!-- Fixed nav -->
+      <nav
+        class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-slate-900/70 backdrop-blur-sm shadow-md z-50"
       >
-        <span class="toggle-icon" aria-hidden="true">🌙</span>
-      </button>
-    </header>
+        <div
+          class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between"
+        >
+          <a href="#about" class="font-semibold tracking-wide hover:opacity-90"
+            >Pranav Grandhe</a
+          >
 
-    <main>
-      <!-- About -->
-      <section id="about" class="reveal">
-        <h2>About Me</h2>
-        <p>
-          I am a Master's student at SUNY Buffalo, passionate about building
-          scalable systems and solving real-world problems with machine learning
-          and software engineering principles.
-        </p>
-        <ul class="edu-list">
-          <li class="edu-item">
-            <img
-              src="ub.jpg"
-              alt="University at Buffalo"
-              class="profile-pic edu-logo"
-            />
-            <div>
-              <strong>MASTER'S in Computer Science</strong> (GPA: 3.33) – State
-              University of New York at Buffalo
+          <div class="hidden sm:flex items-center gap-6 text-sm">
+            <a href="#about" class="hover:opacity-80">About</a>
+            <a href="#skills" class="hover:opacity-80">Skills</a>
+            <a href="#experience" class="hover:opacity-80">Experience</a>
+            <a href="#projects" class="hover:opacity-80">Projects</a>
+            <a href="#contact" class="hover:opacity-80">Contact</a>
+            <!-- Removed Contact Me link -->
+          </div>
+
+          <!-- Dark toggle -->
+          <button
+            id="themeToggle"
+            class="ml-3 inline-flex items-center justify-center w-10 h-10 rounded-full border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark"
+            title="Toggle dark mode"
+            aria-label="Toggle dark mode"
+          >
+            <span id="themeIcon" class="text-lg">🌙</span>
+          </button>
+        </div>
+      </nav>
+
+      <main class="pt-20">
+        <!-- About (with particles) -->
+        <section
+          id="about"
+          class="min-h-screen relative flex items-center justify-center"
+        >
+          <!-- gradient inside section -->
+          <div
+            class="absolute inset-0 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-slate-900 dark:to-slate-950"
+          ></div>
+
+          <!-- particles canvas -->
+          <div id="tsparticles" class="absolute inset-0 -z-0"></div>
+
+          <div class="relative z-10 max-w-6xl mx-auto px-4 py-10">
+            <div
+              class="mx-auto max-w-3xl rounded-2xl border border-border-light dark:border-border-dark bg-card-light/80 dark:bg-card-dark/60 backdrop-blur-md shadow-soft dark:shadow-softdark p-6 sm:p-8"
+            >
+              <div class="flex items-center gap-4 mb-4">
+                <img
+                  src="Profile.JPG"
+                  alt="Pranav Grandhe"
+                  class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-2 ring-border-light dark:ring-border-dark shadow-soft dark:shadow-softdark"
+                />
+                <div>
+                  <h1 class="text-2xl sm:text-3xl font-semibold">
+                    Pranav Grandhe
+                  </h1>
+
+                  <!-- Rotating roles line -->
+                  <p
+                    class="text-slate-600 dark:text-slate-300 mt-0.5"
+                    role="status"
+                    aria-live="polite"
+                  >
+                    <span id="roleText" class="font-medium"></span
+                    ><span class="caret">|</span>
+                  </p>
+
+                  <div class="flex gap-3 mt-2 text-sm">
+                    <a
+                      href="mailto:pranavgrandhe@gmail.com"
+                      class="px-3 py-1.5 rounded-full border border-border-light dark:border-border-dark bg-white/80 dark:bg-slate-900/60 hover:opacity-90"
+                      >Email</a
+                    >
+                    <a
+                      href="https://www.linkedin.com/in/pranav-grandhe-219b37231"
+                      target="_blank"
+                      class="px-3 py-1.5 rounded-full border border-border-light dark:border-border-dark bg-white/80 dark:bg-slate-900/60 hover:opacity-90"
+                      >LinkedIn</a
+                    >
+                    <a
+                      href="https://github.com/pranavgrandhe"
+                      target="_blank"
+                      class="px-3 py-1.5 rounded-full border border-border-light dark:border-border-dark bg-white/80 dark:bg-slate-900/60 hover:opacity-90"
+                      >GitHub</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <p class="leading-relaxed">
+                I am a Master's student at SUNY Buffalo, passionate about
+                building scalable systems and solving real-world problems with
+                machine learning and software engineering principles.
+              </p>
+
+              <!-- Education -->
+              <ul class="mt-6 space-y-4">
+                <li class="flex items-center gap-3">
+                  <img
+                    src="ub.jpg"
+                    alt="University at Buffalo"
+                    class="w-12 h-10 rounded-full object-cover ring-2 ring-border-light dark:ring-border-dark"
+                  />
+                  <div>
+                    <strong>MASTER'S in Computer Science</strong> (GPA: 3.33) –
+                    State University of New York at Buffalo
+                  </div>
+                </li>
+                <li class="flex items-center gap-3">
+                  <img
+                    src="rmk.jpg"
+                    alt="R.M.K. Engineering College"
+                    class="w-12 h-10 rounded-full object-cover ring-2 ring-border-light dark:ring-border-dark"
+                  />
+                  <div>
+                    <strong
+                      >Bachelor's in Computer Science and Engineering</strong
+                    >
+                    (CGPA: 8.1) – R.M.K. Engineering College
+                  </div>
+                </li>
+              </ul>
             </div>
-          </li>
-          <li class="edu-item">
-            <img
-              src="rmk.jpg"
-              alt="R.M.K. Engineering College"
-              class="profile-pic edu-logo"
-            />
-            <div>
-              <strong>Bachelor's in Computer Science and Engineering</strong>
-              (CGPA: 8.1) – R.M.K. Engineering College
+          </div>
+        </section>
+
+        <!-- Skills -->
+        <section id="skills" class="py-16">
+          <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-6">Skills</h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div
+                class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5"
+              >
+                <h3 class="font-semibold mb-2">🧠 Programming Languages</h3>
+                <p>
+                  Java, Python, SQL, R, C, C++, JavaScript, HTML, CSS,
+                  Bash/Shell
+                </p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5"
+              >
+                <h3 class="font-semibold mb-2">📚 Libraries & Frameworks</h3>
+                <p>
+                  Pandas, NumPy, Matplotlib, Seaborn, PyTorch, TensorFlow,
+                  Scikit-learn, Deep Learning, ML, NLP, RAG, LangGraph, OpenCV
+                </p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5"
+              >
+                <h3 class="font-semibold mb-2">🌐 Web & Backend</h3>
+                <p>
+                  Flask, Django, FastAPI, Streamlit, Node.js, Express.js,
+                  ASP.NET, Spring Boot, Next.js, React.js, Angular.js, Redux,
+                  REST APIs, Bootstrap
+                </p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5"
+              >
+                <h3 class="font-semibold mb-2">☁️ Cloud & Data Eng</h3>
+                <p>
+                  AWS, Azure, Snowflake, Databricks, dbt, Parquet, Delta Lake,
+                  Spark, Hadoop, Airflow, Kafka, S3, HDFS, Hive, Data Lake, ETL
+                </p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5"
+              >
+                <h3 class="font-semibold mb-2">🗃️ Databases</h3>
+                <p>MySQL, PostgreSQL, MongoDB</p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5"
+              >
+                <h3 class="font-semibold mb-2">📊 BI & Analytics</h3>
+                <p>
+                  Power BI, Tableau, Excel, Statistical Analysis, Time Series,
+                  Regression, Predictive Analysis
+                </p>
+              </div>
+
+              <div
+                class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 sm:col-span-2 lg:col-span-3"
+              >
+                <h3 class="font-semibold mb-2">🛠️ Tools & DevOps</h3>
+                <p>Git, GitLab, Jenkins, Docker, Jira</p>
+              </div>
             </div>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Skills -->
-      <section id="skills" class="reveal">
-        <h2>Skills</h2>
-
-        <h3>🧠 Programming Languages</h3>
-        <ul>
-          <li>
-            Java, Python, SQL, R, C, C++, JavaScript, HTML, CSS, Bash/Shell
-          </li>
-        </ul>
-
-        <h3>📚 Libraries & Frameworks</h3>
-        <ul>
-          <li>
-            Pandas, NumPy, Matplotlib, Seaborn, PyTorch, TensorFlow,
-            Scikit-learn
-          </li>
-          <li>Deep Learning, Machine Learning, NLP, RAG, LangGraph, OpenCV</li>
-        </ul>
-
-        <h3>🌐 Web & Backend Development</h3>
-        <ul>
-          <li>
-            Flask, Django, FastAPI, Streamlit, Node.js, Express.js, ASP.NET,
-            Spring Boot
-          </li>
-          <li>Next.js, React.js, Angular.js, Redux, REST APIs, Bootstrap</li>
-        </ul>
-
-        <h3>☁️ Cloud & Data Engineering</h3>
-        <ul>
-          <li>
-            AWS, Microsoft Azure, Snowflake, Databricks, dbt, Parquet, Delta
-            Lake
-          </li>
-          <li>Apache Spark, Hadoop, Apache Airflow, Apache Kafka</li>
-          <li>
-            Amazon S3, HDFS, Apache Hive, Data Lake Architecture, ETL Pipelines
-          </li>
-        </ul>
-
-        <h3>🗃️ Databases</h3>
-        <ul>
-          <li>MySQL, PostgreSQL, MongoDB</li>
-        </ul>
-
-        <h3>📊 Data Visualization & BI</h3>
-        <ul>
-          <li>Power BI, Tableau, Microsoft Excel</li>
-        </ul>
-
-        <h3>📈 Analytics & Modeling</h3>
-        <ul>
-          <li>
-            Statistical Analysis, Time Series, Regression, Predictive Analysis
-          </li>
-        </ul>
-
-        <h3>🛠️ Tools & DevOps</h3>
-        <ul>
-          <li>Git, GitLab, Jenkins, Docker, Jira</li>
-        </ul>
-      </section>
-
-      <!-- Experience -->
-      <section id="experience" class="reveal">
-        <h2>Professional Experience</h2>
-
-        <div class="exp-card">
-          <h3>Target Agility – Data Engineer</h3>
-          <p class="exp-duration">Jan 2022 – Dec 2023</p>
-          <ul>
-            <li>
-              🛠️ Tackled reporting bottlenecks caused by poorly structured
-              schemas and inefficient SQL queries
-            </li>
-            <li>
-              📐 Redesigned database layer using 3NF/BCNF normalization,
-              indexing, and partitioning
-            </li>
-            <li>
-              ⚡ Optimized stored procedures, reducing SQL execution time by 45%
-            </li>
-            <li>
-              🔗 Partnered with React and Spring Boot teams to expose SQL-driven
-              APIs
-            </li>
-            <li>
-              📊 Improved dashboard reporting latency by 70% and delivered
-              high-availability SQL solutions
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects" class="reveal">
-        <div class="section-header">
-          <h2>Projects</h2>
-          <label class="filter">
-            <input
-              type="search"
-              id="project-filter"
-              placeholder="Search projects (e.g., 'Spark', 'Airflow', 'CNN')"
-            />
-          </label>
-        </div>
-
-        <!-- Example project -->
-        <div
-          class="project card"
-          data-tags="pytorch cnn transformer grad-cam healthcare classification"
-        >
-          <img src="brain tumer.jpg" alt="Brain Tumor Detection" />
-          <div class="card-body">
-            <h3>Brain Tumor Detection using Hybrid CNN-Transformer Models</h3>
-            <p>
-              Developed a hybrid deep learning system for classifying brain MRI
-              scans into four categories. Combined ResNet50 and EfficientNet-B0
-              with Transformer encoders and SE blocks to improve accuracy and
-              interpretability.
-            </p>
-            <ul>
-              <li>📊 Accuracy: 99.47% (ResNet-Hybrid)</li>
-              <li>🧠 Tools: PyTorch, CNNs, Transformers, Grad-CAM</li>
-              <li>🖼️ Frontend: Gradio app for uploading scans</li>
-              <li>
-                📁
-                <a
-                  href="https://github.com/pranavgrandhe/Brain-tumer-Detection-"
-                  target="_blank"
-                  >GitHub Repo</a
-                >
-              </li>
-            </ul>
           </div>
-        </div>
-        <!-- NYC Inspection -->
-        <div
-          class="project card"
-          data-tags="pandas numpy sqlite etl star schema visualization nyc"
-        >
-          <img src="NYC Food.jpg" alt="NYC Food Inspection Analysis" />
-          <div class="card-body">
-            <h3>NYC Restaurant Inspection Analysis (Python + SQLite)</h3>
-            <p>
-              End-to-end analytics on 200K+ NYC health inspection records. Built
-              an ETL, modeled a star-schema warehouse, and visualized hygiene
-              trends.
-            </p>
-            <ul>
-              <li>🔄 ETL with Pandas/NumPy</li>
-              <li>🧱 Star schema: 1 fact, 5+ dimensions</li>
-              <li>📊 Matplotlib trends by borough/cuisine</li>
-              <li>🧰 Tools: Python, SQLite, Matplotlib</li>
-              <li>
-                📁
-                <a
-                  href="https://github.com/pranavgrandhe/nyc-food-inspection-analysis"
-                  target="_blank"
-                  >GitHub Repo</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-        <!-- Credit Risk Prediction Web App -->
-        <div
-          class="project card"
-          data-tags="flask ml random-forest credit-score classification web-app"
-        >
-          <img src="credit card risk.jpg" alt="Credit Risk Prediction App" />
-          <div class="card-body">
-            <h3>Credit Risk Prediction Web Application</h3>
-            <p>
-              Developed a full-stack credit score classification tool using a
-              Random Forest model and Flask framework. Enables financial
-              institutions to assess borrowers' risk profiles based on
-              user-submitted features.
-            </p>
-            <ul>
-              <li>🧠 Model: Random Forest Classifier (Accuracy: 77.5%)</li>
-              <li>🛠️ Stack: Python, Flask, HTML, CSS, Pandas, Sklearn</li>
-              <li>
-                🔍 17 financial features as user inputs (e.g., debt, credit
-                limit, loan count)
-              </li>
-              <li>
-                📊 Risk levels classified: <strong>Poor, Standard, Good</strong>
-              </li>
-              <li>🧰 Frontend: HTML form; Backend: Flask inference route</li>
-              <li>
-                📁
-                <a
-                  href="https://github.com/pranavgrandhe/Credit-Risk-Prediction-App"
-                  target="_blank"
-                >
-                  GitHub Repo
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        </section>
 
-        <!-- Twitter Data Pipeline -->
-        <div
-          class="project card"
-          data-tags="airflow docker aws ec2 s3 kafka pipeline etl"
-        >
-          <img
-            src="twitter data.jpg"
-            alt="Twitter Data Pipeline with Airflow"
-          />
-          <div class="card-body">
-            <h3>Twitter Data Pipeline using Apache Airflow</h3>
-            <p>
-              Real-time pipeline for ingesting and processing tweets with
-              Airflow, Docker, and AWS. Automated ETL, boosted reliability and
-              deploy speed.
-            </p>
-            <ul>
-              <li>🔄 Airflow DAGs for ingestion & processing</li>
-              <li>🐳 Deployed on AWS EC2 with Docker</li>
-              <li>🗃️ Amazon S3 for durable storage</li>
-              <li>⚡ +35% processing efficiency, 30% faster deploys</li>
-              <li>
-                📁
-                <a
-                  href="https://github.com/pranavgrandhe/-airline-tweet-sentiment-analysis"
-                  target="_blank"
-                  >GitHub Repo</a
+        <!-- Experience -->
+        <section id="experience" class="py-16">
+          <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-6">
+              Professional Experience
+            </h2>
+
+            <div
+              class="rounded-2xl border-l-4 border-primary border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-6"
+            >
+              <div class="flex flex-wrap items-baseline gap-3">
+                <h3 class="text-xl font-semibold">
+                  Target Agility – Data Engineer
+                </h3>
+                <span class="text-sm text-slate-600 dark:text-slate-300"
+                  >Jan 2022 – Dec 2023</span
                 >
-              </li>
-            </ul>
+              </div>
+              <ul class="list-disc pl-5 space-y-2 mt-3">
+                <li>
+                  🛠️ Tackled reporting bottlenecks caused by poorly structured
+                  schemas and inefficient SQL queries
+                </li>
+                <li>
+                  📐 Redesigned database layer using 3NF/BCNF normalization,
+                  indexing, and partitioning
+                </li>
+                <li>
+                  ⚡ Optimized stored procedures, reducing SQL execution time by
+                  45%
+                </li>
+                <li>
+                  🔗 Partnered with React and Spring Boot teams to expose
+                  SQL-driven APIs
+                </li>
+                <li>
+                  📊 Improved dashboard reporting latency by 70% and delivered
+                  high-availability SQL solutions
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <!-- Full-Stack Movie Review Web Application -->
-        <div
-          class="project card"
-          data-tags="java spring-boot react mongodb full-stack crud api"
-        >
-          <img src="movie review.jpg" alt="Movie Review Web App" />
-          <div class="card-body">
-            <h3>Full-Stack Movie Review Web Application</h3>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="py-16">
+          <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between gap-4 mb-4">
+              <h2 class="text-2xl sm:text-3xl font-semibold">Projects</h2>
+              <label class="relative">
+                <input
+                  id="projectFilter"
+                  type="search"
+                  placeholder="Search projects (e.g., 'Spark', 'Airflow', 'CNN')"
+                  class="w-72 max-w-[60vw] px-3 py-2 rounded-lg border border-border-light dark:border-border-dark bg-white dark:bg-slate-900 outline-none"
+                />
+              </label>
+            </div>
+
+            <div id="projectGrid" class="grid md:grid-cols-2 gap-6">
+              <!-- Brain Tumor -->
+              <article
+                class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden"
+              >
+                <img
+                  src="brain tumer.jpg"
+                  alt="Brain Tumor Detection"
+                  class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark group-hover:opacity-95 transition"
+                  loading="lazy"
+                />
+                <div class="p-5">
+                  <h3 class="text-lg font-semibold">
+                    Brain Tumor Detection using Hybrid CNN-Transformer Models
+                  </h3>
+                  <p class="text-slate-600 dark:text-slate-300 mt-1">
+                    Hybrid deep learning for MRI classification. ResNet50 &
+                    EfficientNet-B0 with Transformer encoders and SE blocks.
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                    <li>📊 Accuracy: 99.47% (ResNet-Hybrid)</li>
+                    <li>🧠 Tools: PyTorch, CNNs, Transformers, Grad-CAM</li>
+                    <li>🖼️ Frontend: Gradio app for uploading scans</li>
+                    <li>
+                      📁
+                      <a
+                        class="underline"
+                        target="_blank"
+                        href="https://github.com/pranavgrandhe/Brain-tumer-Detection-"
+                        >GitHub Repo</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- NYC -->
+              <article
+                class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden"
+              >
+                <img
+                  src="NYC Food.jpg"
+                  alt="NYC Food Inspection Analysis"
+                  class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark group-hover:opacity-95 transition"
+                  loading="lazy"
+                />
+                <div class="p-5">
+                  <h3 class="text-lg font-semibold">
+                    NYC Restaurant Inspection Analysis (Python + SQLite)
+                  </h3>
+                  <p class="text-slate-600 dark:text-slate-300 mt-1">
+                    End-to-end analytics on 200K+ inspection records. ETL,
+                    star-schema warehouse, borough/cuisine trends.
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                    <li>🔄 ETL with Pandas/NumPy</li>
+                    <li>🧱 Star schema: 1 fact, 5+ dimensions</li>
+                    <li>📊 Matplotlib trends by borough/cuisine</li>
+                    <li>🧰 Tools: Python, SQLite, Matplotlib</li>
+                    <li>
+                      📁
+                      <a
+                        class="underline"
+                        target="_blank"
+                        href="https://github.com/pranavgrandhe/nyc-food-inspection-analysis"
+                        >GitHub Repo</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Credit Risk -->
+              <article
+                class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden"
+              >
+                <img
+                  src="credit card risk.jpg"
+                  alt="Credit Risk App"
+                  class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark group-hover:opacity-95 transition"
+                  loading="lazy"
+                />
+                <div class="p-5">
+                  <h3 class="text-lg font-semibold">
+                    Credit Risk Prediction Web Application
+                  </h3>
+                  <p class="text-slate-600 dark:text-slate-300 mt-1">
+                    Full-stack credit score classification using Random Forest +
+                    Flask.
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                    <li>🧠 Accuracy: 77.5%</li>
+                    <li>🛠️ Stack: Python, Flask, HTML/CSS, Pandas, Sklearn</li>
+                    <li>
+                      🔍 17 financial features; classes: Poor, Standard, Good
+                    </li>
+                    <li>
+                      📁
+                      <a
+                        class="underline"
+                        target="_blank"
+                        href="https://github.com/pranavgrandhe/Credit-Risk-Prediction-App"
+                        >GitHub Repo</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Twitter Pipeline -->
+              <article
+                class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden"
+              >
+                <img
+                  src="twitter data.jpg"
+                  alt="Twitter Data Pipeline"
+                  class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark group-hover:opacity-95 transition"
+                  loading="lazy"
+                />
+                <div class="p-5">
+                  <h3 class="text-lg font-semibold">
+                    Twitter Data Pipeline using Apache Airflow
+                  </h3>
+                  <p class="text-slate-600 dark:text-slate-300 mt-1">
+                    Real-time ingestion & processing with Airflow, Docker, AWS.
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                    <li>🔄 Airflow DAGs for ingestion & processing</li>
+                    <li>🐳 AWS EC2 + Docker, S3 storage</li>
+                    <li>⚡ +35% efficiency, 30% faster deploys</li>
+                    <li>
+                      📁
+                      <a
+                        class="underline"
+                        target="_blank"
+                        href="https://github.com/pranavgrandhe/-airline-tweet-sentiment-analysis"
+                        >GitHub Repo</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Movie Review -->
+              <article
+                class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden"
+              >
+                <img
+                  src="movie review.jpg"
+                  alt="Movie Review App"
+                  class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark group-hover:opacity-95 transition"
+                  loading="lazy"
+                />
+                <div class="p-5">
+                  <h3 class="text-lg font-semibold">
+                    Full-Stack Movie Review Web Application
+                  </h3>
+                  <p class="text-slate-600 dark:text-slate-300 mt-1">
+                    Scalable CRUD with Java, Spring Boot, MongoDB Atlas, React.
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                    <li>📊 10K+ movie & review records</li>
+                    <li>⚡ Optimized REST APIs (−40% latency)</li>
+                    <li>
+                      🚀 Onboarding with <code>.env</code>, Maven, containerized
+                      MongoDB
+                    </li>
+                    <li>
+                      📁
+                      <a
+                        class="underline"
+                        target="_blank"
+                        href="https://github.com/YOUR_GITHUB_REPO_LINK"
+                        >GitHub Repo</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </article>
+
+              <!-- Pintos -->
+              <article
+                class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden"
+              >
+                <img
+                  src="os.jpg"
+                  alt="Pintos Threads"
+                  class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark group-hover:opacity-95 transition"
+                  loading="lazy"
+                />
+                <div class="p-5">
+                  <h3 class="text-lg font-semibold">
+                    Operating System Development – P1 Threads (Team)
+                  </h3>
+                  <p class="text-slate-600 dark:text-slate-300 mt-1">
+                    Simplified OS kernel in Pintos: threading, scheduling, sync
+                    primitives.
+                  </p>
+                  <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                    <li>🧵 Priority scheduling, context switching</li>
+                    <li>🔁 Semaphores, locks, condition variables</li>
+                    <li>🛠️ C, x86, QEMU, GDB, Make</li>
+                    <li>
+                      📁
+                      <a
+                        class="underline"
+                        target="_blank"
+                        href="https://github.com/CSE521-Project/P1-Threads"
+                        >GitHub Repo</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-16">
+          <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Contact</h2>
             <p>
-              Developed a full-stack web application for managing movie reviews,
-              solving scalability challenges and enabling reliable CRUD
-              operations.
+              Email:
+              <a class="underline" href="mailto:pranavgrandhe@gmail.com"
+                >pranavgrandhe@gmail.com</a
+              >
             </p>
-            <ul>
-              <li>🖥️ Tech: Java, Spring Boot, MongoDB Atlas, React.js</li>
-              <li>📊 Supported 10K+ movie and review records</li>
-              <li>
-                ⚡ Optimized REST APIs, reduced backend latency by
-                <strong>40%</strong>
-              </li>
-              <li>
-                🚀 Onboarding simplified with <code>.env</code>, Maven, and
-                containerized MongoDB Atlas
-              </li>
-              <li>⏱️ Cut developer setup time by <strong>50%</strong></li>
-              <li>
-                📁
-                <a
-                  href="https://github.com/YOUR_GITHUB_REPO_LINK"
-                  target="_blank"
-                >
-                  GitHub Repo
-                </a>
-              </li>
-            </ul>
+            <p>Phone: +1 (804) 388-5161</p>
           </div>
-        </div>
+        </section>
+      </main>
+    </div>
 
-        <!-- Pintos OS -->
-        <div
-          class="project card"
-          data-tags="c os kernel threads synchronization qemu"
-        >
-          <img src="os.jpg" alt="Pintos Threads Project" />
-          <div class="card-body">
-            <h3>Operating System Development – P1 Threads (Team)</h3>
-            <p>
-              Built a simplified OS kernel in Pintos. Implemented threading,
-              scheduling, and synchronization primitives across multiple phases.
-            </p>
-            <ul>
-              <li>🧵 Priority scheduling, context switching</li>
-              <li>🔁 Semaphores, locks, condition variables</li>
-              <li>🛠️ C, x86, QEMU, GDB, Make</li>
-              <li>👥 Git reviews & milestones</li>
-              <li>
-                📁
-                <a
-                  href="https://github.com/CSE521-Project/P1-Threads"
-                  target="_blank"
-                  >GitHub Repo</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Add your other projects (NYC Inspection, Twitter Pipeline, Pintos OS, etc.) here in the same card structure -->
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="reveal">
-        <h2>Contact</h2>
-        <p>
-          Email:
-          <a href="mailto:pranavgrandhe@gmail.com">pranavgrandhe@gmail.com</a>
-        </p>
-        <p>Phone: +1 (804) 388-5161</p>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <p>&copy; 2025 Pranav Grandhe. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="py-6 text-center text-slate-600 dark:text-slate-300">
+      © 2025 Pranav Grandhe. All rights reserved.
     </footer>
 
-    <!-- Scroll to top -->
-    <button
-      id="scroll-top"
-      class="scroll-top"
-      aria-label="Scroll to top"
-      title="Back to top"
-    >
-      ↑
-    </button>
+    <!-- Scripts -->
+    <script>
+      /* ========= Dark Mode (class on <html>) ========= */
+      const htmlEl = document.documentElement;
+      const themeBtn = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const THEME_KEY = "pg-theme";
 
-    <script src="script.js"></script>
+      function applyTheme(mode) {
+        const dark = mode === "dark";
+        htmlEl.classList.toggle("dark", dark);
+        themeIcon.textContent = dark ? "☀️" : "🌙";
+      }
+      function systemPref() {
+        return matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      }
+      // init with saved preference or system
+      applyTheme(localStorage.getItem(THEME_KEY) || systemPref());
+      // toggle
+      themeBtn.addEventListener("click", () => {
+        const current = htmlEl.classList.contains("dark") ? "dark" : "light";
+        const next = current === "dark" ? "light" : "dark";
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      });
+      // follow system if no manual choice stored
+      const mql = matchMedia("(prefers-color-scheme: dark)");
+      mql.addEventListener?.("change", (e) => {
+        if (!localStorage.getItem(THEME_KEY))
+          applyTheme(e.matches ? "dark" : "light");
+      });
+
+      /* ========= Projects filter ========= */
+      const filterInput = document.getElementById("projectFilter");
+      const cards = [...document.querySelectorAll("#projectGrid .project")];
+      filterInput?.addEventListener("input", (e) => {
+        const q = (e.target.value || "").toLowerCase();
+        cards.forEach((card) => {
+          const text = card.textContent.toLowerCase();
+          card.style.display = !q || text.includes(q) ? "" : "none";
+        });
+      });
+
+      /* ========= tsParticles ========= */
+      (async () => {
+        await tsParticles.load("tsparticles", {
+          background: { color: "transparent" },
+          fpsLimit: 60,
+          particles: {
+            number: { value: 60, density: { enable: true, area: 800 } },
+            color: { value: ["#60a5fa", "#a78bfa", "#34d399"] },
+            shape: { type: "circle" },
+            opacity: { value: 0.5 },
+            size: { value: { min: 1, max: 3 } },
+            move: { enable: true, speed: 0.6, outModes: { default: "out" } },
+            links: {
+              enable: true,
+              opacity: 0.2,
+              distance: 120,
+              color: "#94a3b8",
+            },
+          },
+          interactivity: {
+            events: {
+              onHover: { enable: true, mode: "repulse" },
+              resize: true,
+            },
+            modes: { repulse: { distance: 100, duration: 0.3 } },
+          },
+          detectRetina: true,
+        });
+      })();
+
+      /* ========= Rotating job roles (infinite loop) ========= */
+      (function () {
+        const roles = [
+          "Software Engineer",
+          "Full-Stack Developer",
+          "Data Engineer",
+          "Data Analyst",
+        ];
+        const el = document.getElementById("roleText");
+        if (!el) return;
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+        if (reduceMotion) {
+          el.textContent = roles.join(" • ");
+          return;
+        }
+
+        let roleIdx = 0,
+          charIdx = 0,
+          typing = true;
+
+        function typeLoop() {
+          const text = roles[roleIdx];
+
+          if (typing) {
+            charIdx++;
+            el.textContent = text.slice(0, charIdx);
+            if (charIdx === text.length) {
+              typing = false;
+              setTimeout(typeLoop, 1200);
+              return;
+            }
+            setTimeout(typeLoop, 80);
+          } else {
+            charIdx--;
+            el.textContent = text.slice(0, charIdx);
+            if (charIdx === 0) {
+              typing = true;
+              roleIdx = (roleIdx + 1) % roles.length;
+              setTimeout(typeLoop, 300);
+              return;
+            }
+            setTimeout(typeLoop, 40);
+          }
+        }
+        typeLoop();
+      })();
+    </script>
   </body>
 </html>
