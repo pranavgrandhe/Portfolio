@@ -10,7 +10,7 @@
     <script>
       tailwind.config = {
         darkMode: "class",
-        safelist: ["animate-inup"], /* ensure custom animation class is kept */
+        safelist: ["animate-inup"] /* ensure custom animation class is kept */,
         theme: {
           extend: {
             colors: {
@@ -41,7 +41,9 @@
 
     <style>
       @keyframes blink {
-        50% { opacity: 0; }
+        50% {
+          opacity: 0;
+        }
       }
       .caret {
         display: inline-block;
@@ -50,7 +52,9 @@
         animation: blink 1s step-end infinite;
       }
       @media (prefers-reduced-motion: reduce) {
-        .caret { animation: none; }
+        .caret {
+          animation: none;
+        }
       }
     </style>
 
@@ -58,19 +62,36 @@
   </head>
   <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
     <!-- Scroll progress bar -->
-    <div id="scrollProgress" class="fixed top-0 left-0 h-1 bg-primary/80 z-[60] w-0"></div>
+    <div
+      id="scrollProgress"
+      class="fixed top-0 left-0 h-1 bg-primary/80 z-[60] w-0"
+    ></div>
 
     <!-- Nav -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-slate-900/70 backdrop-blur-sm shadow-md z-50">
-      <div class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-        <a href="#about" class="font-semibold tracking-wide hover:opacity-90">Pranav Grandhe</a>
-        <div class="hidden sm:flex items-center gap-6 text-sm" id="desktopLinks">
+    <nav
+      class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-slate-900/70 backdrop-blur-sm shadow-md z-50"
+    >
+      <div
+        class="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between"
+      >
+        <a href="#about" class="font-semibold tracking-wide hover:opacity-90"
+          >Pranav Grandhe</a
+        >
+        <div
+          class="hidden sm:flex items-center gap-6 text-sm"
+          id="desktopLinks"
+        >
           <a href="#about" class="navlink">About</a>
           <a href="#skills" class="navlink">Skills</a>
           <a href="#experience" class="navlink">Experience</a>
           <a href="#projects" class="navlink">Projects</a>
           <a href="#contact" class="navlink">Contact</a>
-          <a href="resume.pdf" target="_blank" class="navlink font-semibold text-primary">Résumé</a>
+          <a
+            href="resume.pdf"
+            target="_blank"
+            class="navlink font-semibold text-primary"
+            >Résumé</a
+          >
         </div>
         <div class="flex items-center gap-2">
           <button
@@ -104,25 +125,40 @@
           </button>
         </div>
       </div>
-      <div id="mobileMenu" class="sm:hidden origin-top scale-y-0 opacity-0 pointer-events-none transition-transform">
+      <div
+        id="mobileMenu"
+        class="sm:hidden origin-top scale-y-0 opacity-0 pointer-events-none transition-transform"
+      >
         <div class="px-4 py-2 grid gap-2 text-sm">
           <a href="#about" class="mobilelink">About</a>
           <a href="#skills" class="mobilelink">Skills</a>
           <a href="#experience" class="mobilelink">Experience</a>
           <a href="#projects" class="mobilelink">Projects</a>
           <a href="#contact" class="mobilelink">Contact</a>
-          <a href="resume.pdf" target="_blank" class="mobilelink font-semibold text-primary">Résumé</a>
+          <a
+            href="resume.pdf"
+            target="_blank"
+            class="mobilelink font-semibold text-primary"
+            >Résumé</a
+          >
         </div>
       </div>
     </nav>
 
     <main class="pt-20">
       <!-- About (with particles) -->
-      <section id="about" class="min-h-screen relative flex items-center justify-center">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-slate-900 dark:to-slate-950"></div>
+      <section
+        id="about"
+        class="min-h-screen relative flex items-center justify-center"
+      >
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-slate-900 dark:to-slate-950"
+        ></div>
         <div id="tsparticles" class="absolute inset-0 -z-0"></div>
         <div class="relative z-10 max-w-6xl mx-auto px-4 py-10">
-          <div class="mx-auto max-w-3xl rounded-2xl border border-border-light dark:border-border-dark bg-card-light/80 dark:bg-card-dark/60 backdrop-blur-md shadow-soft dark:shadow-softdark p-6 sm:p-8 reveal">
+          <div
+            class="mx-auto max-w-3xl rounded-2xl border border-border-light dark:border-border-dark bg-card-light/80 dark:bg-card-dark/60 backdrop-blur-md shadow-soft dark:shadow-softdark p-6 sm:p-8 reveal"
+          >
             <div class="flex items-center gap-4 mb-4">
               <img
                 src="Profile.JPG"
@@ -130,9 +166,16 @@
                 class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-2 ring-border-light dark:ring-border-dark shadow-soft dark:shadow-softdark"
               />
               <div>
-                <h1 class="text-2xl sm:text-3xl font-semibold">Pranav Grandhe</h1>
-                <p class="text-slate-600 dark:text-slate-300 mt-0.5" role="status" aria-live="polite">
-                  <span id="roleText" class="font-medium"></span><span class="caret">|</span>
+                <h1 class="text-2xl sm:text-3xl font-semibold">
+                  Pranav Grandhe
+                </h1>
+                <p
+                  class="text-slate-600 dark:text-slate-300 mt-0.5"
+                  role="status"
+                  aria-live="polite"
+                >
+                  <span id="roleText" class="font-medium"></span
+                  ><span class="caret">|</span>
                 </p>
                 <div class="flex gap-3 mt-2 text-sm">
                   <a
@@ -163,16 +206,28 @@
             <ul class="mt-6 space-y-4">
               <li class="flex items-center gap-3">
                 <!-- FIXED: removed invalid `$1class="$2 ...` and added alt -->
-                <img src="ub.jpg" class="transition-transform hover:scale-105 rounded-md w-12 h-12 object-cover" alt="SUNY Buffalo logo"/>
+                <img
+                  src="ub.jpg"
+                  class="transition-transform hover:scale-105 rounded-md w-12 h-12 object-cover"
+                  alt="SUNY Buffalo logo"
+                />
                 <div>
-                  <strong>MASTER'S in Computer Science</strong> (GPA: 3.33) – State University of New York at Buffalo
+                  <strong>MASTER'S in Computer Science</strong> (GPA: 3.33) –
+                  State University of New York at Buffalo
                 </div>
               </li>
               <li class="flex items-center gap-3">
                 <!-- FIXED: removed invalid `$1class="$2 ...` and added alt -->
-                <img src="rmk.jpg" class="transition-transform hover:scale-105 rounded-md w-12 h-12 object-cover" alt="R.M.K. Engineering College logo"/>
+                <img
+                  src="rmk.jpg"
+                  class="transition-transform hover:scale-105 rounded-md w-12 h-12 object-cover"
+                  alt="R.M.K. Engineering College logo"
+                />
                 <div>
-                  <strong>Bachelor's in Computer Science and Engineering</strong> (CGPA: 8.1) – R.M.K. Engineering College
+                  <strong
+                    >Bachelor's in Computer Science and Engineering</strong
+                  >
+                  (CGPA: 8.1) – R.M.K. Engineering College
                 </div>
               </li>
             </ul>
@@ -185,31 +240,60 @@
         <div class="max-w-6xl mx-auto px-4">
           <h2 class="text-2xl sm:text-3xl font-semibold mb-6">Skills</h2>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
               <h3 class="font-semibold mb-2">🧠 Programming Languages</h3>
-              <p>Java, Python, SQL, R, C, C++, JavaScript, HTML, CSS, Bash/Shell</p>
+              <p>
+                Java, Python, SQL, R, C, C++, JavaScript, HTML, CSS, Bash/Shell
+              </p>
             </div>
-            <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
               <h3 class="font-semibold mb-2">📚 Libraries & Frameworks</h3>
-              <p>Pandas, NumPy, Matplotlib, Seaborn, PyTorch, TensorFlow, Scikit-learn, Deep Learning, ML, NLP, RAG, LangGraph, OpenCV</p>
+              <p>
+                Pandas, NumPy, Matplotlib, Seaborn, PyTorch, TensorFlow,
+                Scikit-learn, Deep Learning, ML, NLP, RAG, LangGraph, OpenCV
+              </p>
             </div>
-            <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
               <h3 class="font-semibold mb-2">🌐 Web & Backend</h3>
-              <p>Flask, Django, FastAPI, Streamlit, Node.js, Express.js, ASP.NET, Spring Boot, Next.js, React.js, Angular.js, Redux, REST APIs, Bootstrap</p>
+              <p>
+                Flask, Django, FastAPI, Streamlit, Node.js, Express.js, ASP.NET,
+                Spring Boot, Next.js, React.js, Angular.js, Redux, REST APIs,
+                Bootstrap
+              </p>
             </div>
-            <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
               <h3 class="font-semibold mb-2">☁️ Cloud & Data Eng</h3>
-              <p>AWS, Azure, Snowflake, Databricks, dbt, Parquet, Delta Lake, Spark, Hadoop, Airflow, Kafka, S3, HDFS, Hive, Data Lake, ETL</p>
+              <p>
+                AWS, Azure, Snowflake, Databricks, dbt, Parquet, Delta Lake,
+                Spark, Hadoop, Airflow, Kafka, S3, HDFS, Hive, Data Lake, ETL
+              </p>
             </div>
-            <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
               <h3 class="font-semibold mb-2">🗃️ Databases</h3>
               <p>MySQL, PostgreSQL, MongoDB</p>
             </div>
-            <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 reveal"
+            >
               <h3 class="font-semibold mb-2">📊 BI & Analytics</h3>
-              <p>Power BI, Tableau, Excel, Statistical Analysis, Time Series, Regression, Predictive Analysis</p>
+              <p>
+                Power BI, Tableau, Excel, Statistical Analysis, Time Series,
+                Regression, Predictive Analysis
+              </p>
             </div>
-            <div class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 sm:col-span-2 lg:col-span-3 reveal">
+            <div
+              class="rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-5 sm:col-span-2 lg:col-span-3 reveal"
+            >
               <h3 class="font-semibold mb-2">🛠️ Tools & DevOps</h3>
               <p>Git, GitLab, Jenkins, Docker, Jira</p>
             </div>
@@ -220,18 +304,61 @@
       <!-- Experience -->
       <section id="experience" class="py-16">
         <div class="max-w-6xl mx-auto px-4">
-          <h2 class="text-2xl sm:text-3xl font-semibold mb-6">Professional Experience</h2>
-          <div class="rounded-2xl border-l-4 border-primary border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-6 reveal">
-            <div class="flex flex-wrap items-baseline gap-3">
-              <h3 class="text-xl font-semibold">Target Agility – Data Engineer</h3>
-              <span class="text-sm text-slate-600 dark:text-slate-300">Jan 2022 – Dec 2023</span>
+          <h2 class="text-2xl sm:text-3xl font-semibold mb-6">
+            Professional Experience
+          </h2>
+          <div
+            class="rounded-2xl border-l-4 border-primary border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark p-6 reveal"
+          >
+            <div class="flex flex-wrap items-center gap-3">
+              <h3 class="text-xl font-semibold">
+                Skill Yantra Consulting LLP,
+                <span class="role-pill ml-2">Data Engineer</span>
+                <span class="ml-2 sc text-slate-600 dark:text-slate-300">
+                  Bengaluru, IND
+                </span>
+              </h3>
+              <span class="text-sm text-slate-600 dark:text-slate-300">
+                Jan 2022 – Dec 2023
+              </span>
             </div>
+
+            <!-- Project/Focus Heading -->
+            <p class="mt-2 text-base font-medium text-primary">
+              Enterprise Data Pipeline, Query Optimization & Excel Modeling
+            </p>
+
             <ul class="list-disc pl-5 space-y-2 mt-3">
-              <li>🛠️ Tackled reporting bottlenecks caused by poorly structured schemas and inefficient SQL queries</li>
-              <li>📐 Redesigned database layer using 3NF/BCNF normalization, indexing, and partitioning</li>
-              <li>⚡ Optimized stored procedures, reducing SQL execution time by 45%</li>
-              <li>🔗 Partnered with React and Spring Boot teams to expose SQL-driven APIs</li>
-              <li>📊 Improved dashboard reporting latency by 70% and delivered high-availability SQL solutions</li>
+              <li>
+                Resolved reporting bottlenecks from poorly structured schemas
+                and inefficient SQL.
+              </li>
+              <li>
+                Redesigned the database layer using 3NF/BCNF, applied
+                indexing/partitioning, and optimized stored procedures, cutting
+                query execution time by <strong>45%</strong>.
+              </li>
+              <li>
+                Partnered with React (frontend) and Spring Boot (backend) teams
+                to expose SQL-driven APIs for real-time analytics dashboards.
+              </li>
+              <li>
+                Improved dashboard/reporting latency by <strong>70%</strong> and
+                delivered high-availability, production-ready SQL solutions.
+              </li>
+              <li>
+                Built Excel-based forecasting & budgeting models with VBA macros
+                to automate monthly reporting workflows.
+              </li>
+              <li>
+                Designed interactive Excel dashboards (slicers, pivot tables) to
+                monitor operational KPIs & financial metrics.
+              </li>
+              <li>
+                Automated reconciliation and variance analysis using Power Query
+                + Excel formulas, reducing manual effort by
+                <strong>60%</strong>.
+              </li>
             </ul>
           </div>
         </div>
@@ -270,9 +397,12 @@
                 loading="lazy"
               />
               <div class="p-5">
-                <h3 class="text-lg font-semibold">Brain Tumor Detection using Hybrid CNN-Transformer Models</h3>
+                <h3 class="text-lg font-semibold">
+                  Brain Tumor Detection using Hybrid CNN-Transformer Models
+                </h3>
                 <p class="text-slate-600 dark:text-slate-300 mt-1">
-                  Hybrid deep learning for MRI classification. ResNet50 & EfficientNet-B0 with Transformer encoders and SE blocks.
+                  Hybrid deep learning for MRI classification. ResNet50 &
+                  EfficientNet-B0 with Transformer encoders and SE blocks.
                 </p>
                 <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
                   <li>📊 Accuracy: 99.47% (ResNet-Hybrid)</li>
@@ -280,7 +410,12 @@
                   <li>🖼️ Frontend: Gradio app for uploading scans</li>
                   <li>
                     📁
-                    <a class="underline" target="_blank" href="https://github.com/pranavgrandhe/Brain-tumer-Detection-">GitHub Repo</a>
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/Brain-tumer-Detection-"
+                      >GitHub Repo</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -298,9 +433,12 @@
                 loading="lazy"
               />
               <div class="p-5">
-                <h3 class="text-lg font-semibold">NYC Restaurant Inspection Analysis (Python + SQLite)</h3>
+                <h3 class="text-lg font-semibold">
+                  NYC Restaurant Inspection Analysis (Python + SQLite)
+                </h3>
                 <p class="text-slate-600 dark:text-slate-300 mt-1">
-                  End-to-end analytics on 200K+ inspection records. ETL, star-schema warehouse, borough/cuisine trends.
+                  End-to-end analytics on 200K+ inspection records. ETL,
+                  star-schema warehouse, borough/cuisine trends.
                 </p>
                 <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
                   <li>🔄 ETL with Pandas/NumPy</li>
@@ -309,7 +447,12 @@
                   <li>🧰 Tools: Python, SQLite, Matplotlib</li>
                   <li>
                     📁
-                    <a class="underline" target="_blank" href="https://github.com/pranavgrandhe/nyc-food-inspection-analysis">GitHub Repo</a>
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/nyc-food-inspection-analysis"
+                      >GitHub Repo</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -327,17 +470,27 @@
                 loading="lazy"
               />
               <div class="p-5">
-                <h3 class="text-lg font-semibold">Credit Risk Prediction Web Application</h3>
+                <h3 class="text-lg font-semibold">
+                  Credit Risk Prediction Web Application
+                </h3>
                 <p class="text-slate-600 dark:text-slate-300 mt-1">
-                  Full-stack credit score classification using Random Forest + Flask.
+                  Full-stack credit score classification using Random Forest +
+                  Flask.
                 </p>
                 <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
                   <li>🧠 Accuracy: 77.5%</li>
                   <li>🛠️ Stack: Python, Flask, HTML/CSS, Pandas, Sklearn</li>
-                  <li>🔍 17 financial features; classes: Poor, Standard, Good</li>
+                  <li>
+                    🔍 17 financial features; classes: Poor, Standard, Good
+                  </li>
                   <li>
                     📁
-                    <a class="underline" target="_blank" href="https://github.com/pranavgrandhe/Credit-Risk-Prediction-App">GitHub Repo</a>
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/Credit-Risk-Prediction-App"
+                      >GitHub Repo</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -355,15 +508,24 @@
                 loading="lazy"
               />
               <div class="p-5">
-                <h3 class="text-lg font-semibold">Twitter Data Pipeline using Apache Airflow</h3>
-                <p class="text-slate-600 dark:text-slate-300 mt-1">Real-time ingestion & processing with Airflow, Docker, AWS.</p>
+                <h3 class="text-lg font-semibold">
+                  Twitter Data Pipeline using Apache Airflow
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Real-time ingestion & processing with Airflow, Docker, AWS.
+                </p>
                 <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
                   <li>🔄 Airflow DAGs for ingestion & processing</li>
                   <li>🐳 AWS EC2 + Docker, S3 storage</li>
                   <li>⚡ +35% efficiency, 30% faster deploys</li>
                   <li>
                     📁
-                    <a class="underline" target="_blank" href="https://github.com/pranavgrandhe/-airline-tweet-sentiment-analysis">GitHub Repo</a>
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/pranavgrandhe/-airline-tweet-sentiment-analysis"
+                      >GitHub Repo</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -381,15 +543,27 @@
                 loading="lazy"
               />
               <div class="p-5">
-                <h3 class="text-lg font-semibold">Full-Stack Movie Review Web Application</h3>
-                <p class="text-slate-600 dark:text-slate-300 mt-1">Scalable CRUD with Java, Spring Boot, MongoDB Atlas, React.</p>
+                <h3 class="text-lg font-semibold">
+                  Full-Stack Movie Review Web Application
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Scalable CRUD with Java, Spring Boot, MongoDB Atlas, React.
+                </p>
                 <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
                   <li>📊 10K+ movie & review records</li>
                   <li>⚡ Optimized REST APIs (−40% latency)</li>
-                  <li>🚀 Onboarding with <code>.env</code>, Maven, containerized MongoDB</li>
+                  <li>
+                    🚀 Onboarding with <code>.env</code>, Maven, containerized
+                    MongoDB
+                  </li>
                   <li>
                     📁
-                    <a class="underline" target="_blank" href="https://github.com/YOUR_GITHUB_REPO_LINK">GitHub Repo</a>
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/YOUR_GITHUB_REPO_LINK"
+                      >GitHub Repo</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -407,15 +581,25 @@
                 loading="lazy"
               />
               <div class="p-5">
-                <h3 class="text-lg font-semibold">Operating System Development – P1 Threads (Team)</h3>
-                <p class="text-slate-600 dark:text-slate-300 mt-1">Simplified OS kernel in Pintos: threading, scheduling, sync primitives.</p>
+                <h3 class="text-lg font-semibold">
+                  Operating System Development – P1 Threads (Team)
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  Simplified OS kernel in Pintos: threading, scheduling, sync
+                  primitives.
+                </p>
                 <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
                   <li>🧵 Priority scheduling, context switching</li>
                   <li>🔁 Semaphores, locks, condition variables</li>
                   <li>🛠️ C, x86, QEMU, GDB, Make</li>
                   <li>
                     📁
-                    <a class="underline" target="_blank" href="https://github.com/CSE521-Project/P1-Threads">GitHub Repo</a>
+                    <a
+                      class="underline"
+                      target="_blank"
+                      href="https://github.com/CSE521-Project/P1-Threads"
+                      >GitHub Repo</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -430,7 +614,9 @@
           <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Contact</h2>
           <p>
             Email:
-            <a class="underline" href="mailto:pranavgrandhe@gmail.com">pranavgrandhe@gmail.com</a>
+            <a class="underline" href="mailto:pranavgrandhe@gmail.com"
+              >pranavgrandhe@gmail.com</a
+            >
             <button
               id="copyEmail"
               class="ml-2 text-xs px-2 py-1 rounded border border-border-light dark:border-border-dark hover:bg-slate-100 dark:hover:bg-slate-800"
@@ -471,7 +657,9 @@
       }
       applyTheme(
         localStorage.getItem(THEME_KEY) ||
-          (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+          (matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light")
       );
       themeBtn.addEventListener("click", () => {
         const cur = htmlEl.classList.contains("dark") ? "dark" : "light";
@@ -520,21 +708,23 @@
       document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
 
       // Copy email
-      document.getElementById("copyEmail")?.addEventListener("click", async (e) => {
-        const btn = e.currentTarget;
-        btn.disabled = true;
-        try {
-          await navigator.clipboard.writeText("pranavgrandhe@gmail.com");
-          btn.textContent = "Copied!";
-        } catch {
-          btn.textContent = "Failed";
-        } finally {
-          setTimeout(() => {
-            btn.textContent = "Copy";
-            btn.disabled = false;
-          }, 1400);
-        }
-      });
+      document
+        .getElementById("copyEmail")
+        ?.addEventListener("click", async (e) => {
+          const btn = e.currentTarget;
+          btn.disabled = true;
+          try {
+            await navigator.clipboard.writeText("pranavgrandhe@gmail.com");
+            btn.textContent = "Copied!";
+          } catch {
+            btn.textContent = "Failed";
+          } finally {
+            setTimeout(() => {
+              btn.textContent = "Copy";
+              btn.disabled = false;
+            }, 1400);
+          }
+        });
 
       // Project filter + count
       const filterInput = document.getElementById("projectFilter");
@@ -552,7 +742,9 @@
         });
         countBadge.textContent = String(shown);
       }
-      filterInput?.addEventListener("input", (e) => applyFilter(e.target.value));
+      filterInput?.addEventListener("input", (e) =>
+        applyFilter(e.target.value)
+      );
       applyFilter("");
 
       // Particles background
@@ -568,10 +760,18 @@
               opacity: { value: 0.5 },
               size: { value: { min: 1, max: 3 } },
               move: { enable: true, speed: 0.6, outModes: { default: "out" } },
-              links: { enable: true, opacity: 0.2, distance: 120, color: "#94a3b8" },
+              links: {
+                enable: true,
+                opacity: 0.2,
+                distance: 120,
+                color: "#94a3b8",
+              },
             },
             interactivity: {
-              events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+              events: {
+                onHover: { enable: true, mode: "repulse" },
+                resize: true,
+              },
               modes: { repulse: { distance: 100, duration: 0.3 } },
             },
             detectRetina: true,
@@ -581,7 +781,12 @@
 
       // Typewriter rotating roles
       (function () {
-        const roles = ["Software Engineer", "Full-Stack Developer", "Data Engineer", "Data Analyst"];
+        const roles = [
+          "Software Engineer",
+          "Full-Stack Developer",
+          "Data Engineer",
+          "Data Analyst",
+        ];
         const el = document.getElementById("roleText");
         if (!el) return;
         const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -589,7 +794,9 @@
           el.textContent = roles.join(" • ");
           return;
         }
-        let i = 0, j = 0, typing = true;
+        let i = 0,
+          j = 0,
+          typing = true;
         function loop() {
           const t = roles[i];
           if (typing) {
