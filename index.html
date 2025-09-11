@@ -101,8 +101,9 @@
             <span
               id="themeKnob"
               class="absolute left-1 top-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white dark:bg-slate-800 transition-all"
-              ><span id="themeIcon">🌙</span></span
             >
+              <span id="themeIcon">🌙</span>
+            </span>
           </button>
           <button
             id="menuBtn"
@@ -205,7 +206,6 @@
             </p>
             <ul class="mt-6 space-y-4">
               <li class="flex items-center gap-3">
-                <!-- FIXED: removed invalid `$1class="$2 ...` and added alt -->
                 <img
                   src="ub.jpg"
                   class="transition-transform hover:scale-105 rounded-md w-12 h-12 object-cover"
@@ -217,7 +217,6 @@
                 </div>
               </li>
               <li class="flex items-center gap-3">
-                <!-- FIXED: removed invalid `$1class="$2 ...` and added alt -->
                 <img
                   src="rmk.jpg"
                   class="transition-transform hover:scale-105 rounded-md w-12 h-12 object-cover"
@@ -314,16 +313,15 @@
               <h3 class="text-xl font-semibold">
                 Skill Yantra Consulting LLP,
                 <span class="role-pill ml-2">Data Engineer</span>
-                <span class="ml-2 sc text-slate-600 dark:text-slate-300">
-                  Bengaluru, IND
-                </span>
+                <span class="ml-2 sc text-slate-600 dark:text-slate-300"
+                  >Bengaluru, IND</span
+                >
               </h3>
-              <span class="text-sm text-slate-600 dark:text-slate-300">
-                Jan 2022 – Dec 2023
-              </span>
+              <span class="text-sm text-slate-600 dark:text-slate-300"
+                >Jan 2022 – Dec 2023</span
+              >
             </div>
 
-            <!-- Project/Focus Heading -->
             <p class="mt-2 text-base font-medium text-primary">
               Enterprise Data Pipeline, Query Optimization & Excel Modeling
             </p>
@@ -385,6 +383,55 @@
           </div>
 
           <div id="projectGrid" class="grid md:grid-cols-2 gap-6">
+            <!-- NEW: Global Climate Analytics -->
+            <article
+              class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-[1.02] hover:ring-1 hover:ring-primary/40 reveal"
+              data-tags="pyspark spark scikit-learn xgboost knn regression clustering eda streamlit climate"
+            >
+              <img
+                src="global change.jpg"
+                alt="Global Climate Analytics"
+                class="w-full h-40 object-cover border-b border-border-light dark:border-border-dark transition-transform duration-300 ease-out will-change-transform group-hover:scale-105 group-hover:opacity-95"
+                loading="lazy"
+              />
+              <div class="p-5">
+                <h3 class="text-lg font-semibold">
+                  Global Climate Analytics — Major Cities (PySpark +
+                  scikit-learn)
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mt-1">
+                  End-to-end analysis of 240K+ monthly temperature records
+                  (1743–2013): EDA, ML (classification, regression, clustering),
+                  and an interactive app.
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-sm">
+                  <li>
+                    📈 EDA: warming trends, seasonality, hottest cities; strong
+                    negative latitude–temperature correlation.
+                  </li>
+                  <li>
+                    🤖 Models (best): XGBoost 97.34% (classification), KNN
+                    93.89%; Linear Regression R² ≈ 0.70; Spark GBT RMSE ≈ 4.05.
+                  </li>
+                  <li>
+                    ⚙️ Pipelines: PySpark MLlib, MinMax scaling, SMOTE, feature
+                    engineering; profiled Spark DAGs.
+                  </li>
+                  <li>🧪 Deliverables: visual notebooks & a case study PDF.</li>
+                  <li>
+                    📄
+                    <a
+                      class="underline"
+                      href="report.pdf"
+                      target="_blank"
+                      rel="noopener"
+                      >Case Study (report.pdf)</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
+
             <!-- Brain Tumor -->
             <article
               class="project group rounded-2xl border border-border-light dark:border-border-dark bg-card-light dark:bg-card-dark shadow-soft dark:shadow-softdark overflow-hidden transition hover:-translate-y-1 hover:scale-[1.02] hover:ring-1 hover:ring-primary/40 reveal"
